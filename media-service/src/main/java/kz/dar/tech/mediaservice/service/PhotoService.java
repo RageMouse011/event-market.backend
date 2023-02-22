@@ -20,10 +20,12 @@ public class PhotoService {
     private final PhotoRepository photoRepository;
 
     public ResponseEntity<String> uploadPhoto(
-            MultipartFile file
+            MultipartFile file,
+            String eventId
     ) {
         try {
             Photo photo = new Photo(file.getOriginalFilename(), file.getBytes());
+            photo.setEventId(eventId);
             photoRepository.save(photo);
             return ResponseEntity.ok("Photo uploaded successfully : " + file.getOriginalFilename());
         } catch (IOException e) {

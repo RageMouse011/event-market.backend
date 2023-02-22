@@ -20,9 +20,8 @@ import java.util.Date;
 public class Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private String id;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -36,10 +35,10 @@ public class Event {
     @Column(name = "category")
     private Category category;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private Date date;
 
-    @Column(name = "time", nullable = false)
+    @Column(name = "time")
     private Time time;
 
 }

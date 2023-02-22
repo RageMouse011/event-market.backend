@@ -27,7 +27,7 @@ public class Photo {
     private byte[] data;
 
     @Column(name = "event_id")
-    private Long eventId;
+    private String eventId;
 
     public Photo(String name, byte[] data) {
         this.name = name;

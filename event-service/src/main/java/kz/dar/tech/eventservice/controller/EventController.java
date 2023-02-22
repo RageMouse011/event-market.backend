@@ -3,6 +3,7 @@ package kz.dar.tech.eventservice.controller;
 import kz.dar.tech.eventservice.entity.Event;
 import kz.dar.tech.eventservice.service.EventService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class EventController {
 
     @GetMapping("/{id}")
     public Event getEvent(
-            @PathVariable(name = "id") Long id
+            @PathVariable(name = "id") String id
     ) {
         return eventService.getEvent(
                 id
@@ -52,7 +53,7 @@ public class EventController {
         );
     }
 
-    @PostMapping("/post/educational")
+    @PostMapping(value = "/post/educational", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Event postEducationalEvent(
             @RequestBody Event event
     ) {
@@ -72,7 +73,7 @@ public class EventController {
 
     @PutMapping("/update/{id}")
     public Event updateEvent(
-            @PathVariable(name = "id") Long id,
+            @PathVariable(name = "id") String id,
             @RequestBody Event event
     ) {
         return eventService.updateEvent(
@@ -83,7 +84,7 @@ public class EventController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteEvent(
-            @PathVariable(name = "id") Long id
+            @PathVariable(name = "id") String id
     ) {
         eventService.deleteEvent(
                 id
