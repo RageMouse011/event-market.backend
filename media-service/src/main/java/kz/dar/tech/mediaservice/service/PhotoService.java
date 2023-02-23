@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -19,26 +22,21 @@ public class PhotoService {
 
     private final PhotoRepository photoRepository;
 
-    public ResponseEntity<String> uploadPhoto(
-            MultipartFile file,
-            String eventId
+    public String uploadPhoto(
+            MultipartFile file
     ) {
         try {
             Photo photo = new Photo(file.getOriginalFilename(), file.getBytes());
-            photo.setEventId(eventId);
             photoRepository.save(photo);
-            return ResponseEntity.ok("Photo uploaded successfully : " + file.getOriginalFilename());
+            return file.getOriginalFilename();
         } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload photo");
+            throw new RuntimeException(e);
         }
     }
-    public ResponseEntity<byte[]> downloadPhoto(
+    public byte[] downloadPhoto(
             Long id
     ) {
-        Optional<Photo> photo = photoRepository.findById(id);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_PNG);
-        return photo.map(value -> new ResponseEntity<>(value.getData(), headers, HttpStatus.OK))
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        Photo photo = photoRepository.findById(id).get();
+        return photo.getData();
     }
 }
