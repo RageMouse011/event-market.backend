@@ -1,8 +1,13 @@
 package kz.dar.tech.eventservice.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import kz.dar.tech.eventservice.category.Category;
+import kz.dar.tech.eventservice.dto.EventDTO;
 import kz.dar.tech.eventservice.entity.Event;
 import kz.dar.tech.eventservice.repository.EventRepository;
+import kz.dar.tech.eventservice.util.CategoryDeserializer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,33 +42,30 @@ public class EventService {
         return eventRepository.findEventsByCategory(Category.ENTERTAINING);
     }
 
-    public Event postSportsEvent(
-            Event event
-    ) {
-        event.setCategory(Category.SPORTS);
+
+    public Event postEvent(
+            String eventJson
+    ) throws JsonProcessingException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(Category.class, new CategoryDeserializer());
+        objectMapper.registerModule(module);
+
+        EventDTO eventDTO = objectMapper.readValue(eventJson, EventDTO.class);
+        Event event = Event.builder()
+                .title(eventDTO.getTitle())
+                .description(eventDTO.getDescription())
+                .location(eventDTO.getLocation())
+                .category(eventDTO.getCategory())
+                .date(eventDTO.getDate())
+                .time(eventDTO.getTime())
+                .build();
+
         return eventRepository.save(
                 event
         );
     }
-
-    public Event postEducationalEvent(
-            Event event
-    ) {
-        event.setCategory(Category.EDUCATIONAL);
-        return eventRepository.save(
-                event
-        );
-    }
-
-    public Event postEntertainingEvent(
-            Event event
-    ) {
-        event.setCategory(Category.ENTERTAINING);
-        return eventRepository.save(
-                event
-        );
-    }
-
     public void deleteEvent(
             Long id
     ) {

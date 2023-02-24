@@ -19,13 +19,13 @@ public class EventLoadingController {
     private final EventLoadingService eventLoadingService;
     private final MediaClient mediaClient;
 
-    @PostMapping("/educational")
-    public void postEducationalEvent(
+    @PostMapping
+    public void postEvent(
             @RequestPart("event") EventDTO eventDTO,
             @RequestPart("photo") PhotoDTO photoDTO,
             @RequestPart("file") MultipartFile file
             ) throws IOException {
-        eventLoadingService.loadEducationalEvent(eventDTO, photoDTO, file);
+        eventLoadingService.postEvent(eventDTO, photoDTO, file);
     }
 
     @PostMapping(value = "/test", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

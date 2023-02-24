@@ -1,5 +1,6 @@
 package kz.dar.tech.eventservice.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import kz.dar.tech.eventservice.entity.Event;
 import kz.dar.tech.eventservice.service.EventService;
 import lombok.RequiredArgsConstructor;
@@ -44,33 +45,15 @@ public class EventController {
         return eventService.getEntertainingEvents();
     }
 
-    @PostMapping("/sports")
-    public Event postSportsEvent(
-            @RequestBody Event event
-    ) {
-        return eventService.postSportsEvent(
-                event
+
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Event postEvent(
+            String eventJson
+    ) throws JsonProcessingException {
+        return eventService.postEvent(
+                eventJson
         );
     }
-
-    @PostMapping(value = "/educational", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Event postEducationalEvent(
-            Event event
-    ) {
-        return eventService.postEducationalEvent(
-                event
-        );
-    }
-
-    @PostMapping("/entertaining")
-    public Event postEntertainingEvent(
-            @RequestBody Event event
-    ) {
-        return eventService.postEntertainingEvent(
-                event
-        );
-    }
-
     @PutMapping("/{id}")
     public Event updateEvent(
             @PathVariable(name = "id") Long id,
