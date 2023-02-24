@@ -53,9 +53,9 @@ public class EventController {
         );
     }
 
-    @PostMapping(value = "/post/educational", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/post/educational", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Event postEducationalEvent(
-            @RequestBody Event event
+            Event event
     ) {
         return eventService.postEducationalEvent(
                 event
