@@ -10,6 +10,4 @@ public interface EventRepository
         extends JpaRepository<Event, Long> {
 
     List<Event> findEventsByCategory(Category category);
-    Event findById(String id);
-    void deleteById(String id);
 }

@@ -20,9 +20,9 @@ public class EventService {
     }
 
     public Event getEvent(
-            String id
+            Long id
     ) {
-        return eventRepository.findById(id);
+        return eventRepository.findById(id).get();
     }
 
     public List<Event> getSportsEvents() {
@@ -65,21 +65,20 @@ public class EventService {
     }
 
     public void deleteEvent(
-            String id
+            Long id
     ) {
         eventRepository.deleteById(id);
     }
 
     public Event updateEvent(
-            String id,
+            Long id,
             Event event
     ) {
-        Event updatedEvent = eventRepository.findById(id);
+        Event updatedEvent = eventRepository.findById(id).get();
         updatedEvent.setTitle(event.getTitle());
         updatedEvent.setDescription(event.getDescription());
         updatedEvent.setLocation(event.getLocation());
         updatedEvent.setDate(event.getDate());
-        updatedEvent.setTime(event.getTime());
         return eventRepository.save(updatedEvent);
     }
 }

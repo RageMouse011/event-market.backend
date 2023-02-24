@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/events")
+@RequestMapping("/event")
 public class EventController {
 
     private final EventService eventService;
@@ -22,7 +22,7 @@ public class EventController {
 
     @GetMapping("/{id}")
     public Event getEvent(
-            @PathVariable(name = "id") String id
+            @PathVariable(name = "id") Long id
     ) {
         return eventService.getEvent(
                 id
@@ -44,7 +44,7 @@ public class EventController {
         return eventService.getEntertainingEvents();
     }
 
-    @PostMapping("/post/sports")
+    @PostMapping("/sports")
     public Event postSportsEvent(
             @RequestBody Event event
     ) {
@@ -53,7 +53,7 @@ public class EventController {
         );
     }
 
-    @PostMapping(value = "/post/educational", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/educational", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Event postEducationalEvent(
             Event event
     ) {
@@ -62,7 +62,7 @@ public class EventController {
         );
     }
 
-    @PostMapping("/post/entertaining")
+    @PostMapping("/entertaining")
     public Event postEntertainingEvent(
             @RequestBody Event event
     ) {
@@ -71,9 +71,9 @@ public class EventController {
         );
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public Event updateEvent(
-            @PathVariable(name = "id") String id,
+            @PathVariable(name = "id") Long id,
             @RequestBody Event event
     ) {
         return eventService.updateEvent(
@@ -82,9 +82,9 @@ public class EventController {
         );
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteEvent(
-            @PathVariable(name = "id") String id
+            @PathVariable(name = "id") Long id
     ) {
         eventService.deleteEvent(
                 id

@@ -14,13 +14,13 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/manage")
+@RequestMapping("/event")
 public class EventLoadingController {
     private final EventLoadingService eventLoadingService;
     private final MediaClient mediaClient;
 
-    @PostMapping("/load")
-    public void loadEducationalEvent(
+    @PostMapping("/educational")
+    public void postEducationalEvent(
             @RequestPart("event") EventDTO eventDTO,
             @RequestPart("photo") PhotoDTO photoDTO,
             @RequestPart("file") MultipartFile file

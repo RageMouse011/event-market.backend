@@ -1,5 +1,6 @@
 package kz.dar.tech.eventloadingservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.sql.Time;
@@ -16,6 +17,9 @@ public class EventDTO {
     private String description;
     private String location;
     private Category category;
-    private Date date;
-    private Time time;
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
+    private String date;
+
+    @JsonFormat(pattern = "HH:mm", shape = JsonFormat.Shape.STRING)
+    private String time;
 }

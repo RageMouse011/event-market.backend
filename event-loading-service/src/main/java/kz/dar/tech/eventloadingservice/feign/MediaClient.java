@@ -12,7 +12,7 @@ import java.io.IOException;
 @FeignClient("media-service")
 public interface MediaClient {
 
-    @PostMapping(value ="/photos/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value ="/photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     String uploadPhoto(
         @RequestPart("photo") PhotoDTO photoDTO,
         @RequestPart("file") MultipartFile file

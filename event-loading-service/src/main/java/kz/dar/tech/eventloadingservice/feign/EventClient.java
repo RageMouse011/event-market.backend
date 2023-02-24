@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 @FeignClient("event-service")
 public interface EventClient {
 
-    @PostMapping(value = "/events/post/educational", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/event/educational", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     EventDTO postEducationalEvent(
             @RequestPart("event") EventDTO eventDTO
     );

@@ -13,12 +13,12 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/photos")
+@RequestMapping("/photo")
 public class PhotoController {
 
     private final PhotoService photoService;
 
-    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Photo uploadPhoto(
              Photo photo,
              MultipartFile file
