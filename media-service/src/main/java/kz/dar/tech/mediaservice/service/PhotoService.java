@@ -22,16 +22,12 @@ public class PhotoService {
 
     private final PhotoRepository photoRepository;
 
-    public String uploadPhoto(
+    public Photo uploadPhoto(
+            Photo photo,
             MultipartFile file
-    ) {
-        try {
-            Photo photo = new Photo(file.getOriginalFilename(), file.getBytes());
-            photoRepository.save(photo);
-            return file.getOriginalFilename();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    ) throws IOException {
+        photo.setData(file.getBytes());
+        return photoRepository.save(photo);
     }
     public byte[] downloadPhoto(
             Long id

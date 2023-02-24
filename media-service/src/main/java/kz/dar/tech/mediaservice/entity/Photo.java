@@ -26,8 +26,6 @@ public class Photo {
     @Column(name = "data", nullable = false)
     private byte[] data;
 
-    public Photo(String name, byte[] data) {
-        this.name = name;
-        this.data = data;
-    }
+    @Column(name = "eventId")
+    private Long eventId;
 }

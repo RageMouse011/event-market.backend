@@ -10,7 +10,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PhotoDTO {
+    private Long id;
     private String name;
     private byte[] data;
-    private String eventId;
+    private Long eventId;
 }
