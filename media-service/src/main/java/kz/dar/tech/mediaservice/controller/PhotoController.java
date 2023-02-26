@@ -18,10 +18,9 @@ public class PhotoController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Photo uploadPhoto(
-             Photo photo,
              MultipartFile file
     ) throws IOException {
-        return photoService.uploadPhoto(photo, file);
+        return photoService.uploadPhoto(file);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.IMAGE_JPEG_VALUE)

@@ -14,7 +14,6 @@ public interface MediaClient {
 
     @PostMapping(value ="/photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     PhotoDTO uploadPhoto(
-        @RequestPart("photo") PhotoDTO photoDTO,
         @RequestPart("file") MultipartFile file
     ) throws IOException;
 }

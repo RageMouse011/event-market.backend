@@ -25,7 +25,6 @@ public class EventLoadingService {
 
     public void postEvent(
             EventDTO eventDTO,
-            PhotoDTO photoDTO,
             MultipartFile file
     ) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -33,9 +32,9 @@ public class EventLoadingService {
         module.addSerializer(Category.class, new CategorySerializer());
         objectMapper.registerModule(module);
 
-        PhotoDTO photo = mediaClient.uploadPhoto(photoDTO, file);
+        PhotoDTO photo = mediaClient.uploadPhoto(file);
 
-        eventDTO.setPhotoId(photo   .getId());
+        eventDTO.setPhotoId(photo.getId());
         String eventJson = objectMapper.writeValueAsString(eventDTO);
 
         eventClient.postEvent(eventJson);

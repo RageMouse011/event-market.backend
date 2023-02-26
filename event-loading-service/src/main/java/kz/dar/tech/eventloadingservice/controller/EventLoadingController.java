@@ -19,16 +19,15 @@ public class EventLoadingController {
     @PostMapping
     public void postEvent(
             @RequestPart("event") EventDTO eventDTO,
-            @RequestPart("photo") PhotoDTO photoDTO,
             @RequestPart("file") MultipartFile file
             ) throws IOException {
-        eventLoadingService.postEvent(eventDTO, photoDTO, file);
+        eventLoadingService.postEvent(eventDTO, file);
     }
 
 //    @PutMapping("/{id}")
 //    public void updateEvent(
 //            @PathVariable("id") Long id,
-//            @RequestPart("event")
+//            @RequestPart("photo")
 //    )
 
 }

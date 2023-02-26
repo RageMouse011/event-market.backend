@@ -23,9 +23,9 @@ public class PhotoService {
     private final PhotoRepository photoRepository;
 
     public Photo uploadPhoto(
-            Photo photo,
             MultipartFile file
     ) throws IOException {
+        Photo photo = new Photo();
         photo.setData(file.getBytes());
         return photoRepository.save(photo);
     }
