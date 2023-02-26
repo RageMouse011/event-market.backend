@@ -58,6 +58,7 @@ public class EventService {
                 .description(eventDTO.getDescription())
                 .location(eventDTO.getLocation())
                 .category(eventDTO.getCategory())
+                .photoId(eventDTO.getPhotoId())
                 .date(eventDTO.getDate())
                 .time(eventDTO.getTime())
                 .build();

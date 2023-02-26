@@ -6,12 +6,6 @@ import jakarta.persistence.*;
 import kz.dar.tech.eventservice.category.Category;
 import lombok.*;
 
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -34,10 +28,13 @@ public class Event {
 
     @Column(name = "location", nullable = false)
     private String location;
-
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "category", nullable = false)
     private Category category;
+
+    @Column(name = "photo_id")
+    private Long photoId;
 
     @Column(name = "date", nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)

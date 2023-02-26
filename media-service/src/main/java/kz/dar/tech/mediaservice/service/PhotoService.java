@@ -35,4 +35,13 @@ public class PhotoService {
         Photo photo = photoRepository.findById(id).get();
         return photo.getData();
     }
+
+    public void updatePhoto(
+            Long id,
+            MultipartFile file
+    ) throws IOException {
+        Photo photo = photoRepository.findById(id).get();
+        photo.setData(file.getBytes());
+        photoRepository.save(photo);
+    }
 }

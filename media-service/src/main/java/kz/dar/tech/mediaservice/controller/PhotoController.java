@@ -4,11 +4,9 @@ import kz.dar.tech.mediaservice.entity.Photo;
 import kz.dar.tech.mediaservice.service.PhotoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 @RestController
@@ -31,5 +29,13 @@ public class PhotoController {
             @PathVariable Long id
     ) {
         return photoService.downloadPhoto(id);
+    }
+
+    @PutMapping("/{id}")
+    public void updatePhoto(
+            @PathVariable Long id,
+            @RequestParam("file") MultipartFile file
+    ) throws IOException {
+        photoService.updatePhoto(id, file);
     }
 }

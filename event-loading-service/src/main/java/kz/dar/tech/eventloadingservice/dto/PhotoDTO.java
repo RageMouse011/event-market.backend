@@ -10,5 +10,4 @@ import lombok.*;
 public class PhotoDTO {
     private Long id;
     private byte[] data;
-    private Long eventId;
 }

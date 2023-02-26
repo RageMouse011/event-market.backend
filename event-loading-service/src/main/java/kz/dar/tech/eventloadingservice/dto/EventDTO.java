@@ -6,8 +6,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import kz.dar.tech.eventloadingservice.util.CategorySerializer;
 import lombok.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -21,6 +19,8 @@ public class EventDTO {
     private String location;
     @JsonSerialize(using = CategorySerializer.class)
     private Category category;
+
+    private Long photoId;
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private String date;
     @JsonFormat(pattern = "HH:mm", shape = JsonFormat.Shape.STRING)

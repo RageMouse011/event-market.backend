@@ -21,7 +21,4 @@ public class Photo {
     @Lob
     @Column(name = "data", nullable = false)
     private byte[] data;
-
-    @Column(name = "eventId")
-    private Long eventId;
 }

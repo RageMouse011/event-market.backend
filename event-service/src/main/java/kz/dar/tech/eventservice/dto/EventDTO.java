@@ -1,10 +1,5 @@
 package kz.dar.tech.eventservice.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import kz.dar.tech.eventservice.category.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +16,7 @@ public class EventDTO {
     private String description;
     private String location;
     private Category category;
+    private Long photoId;
     private String date;
     private String time;
 }
