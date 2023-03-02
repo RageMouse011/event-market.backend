@@ -11,8 +11,13 @@ import org.springframework.stereotype.Service;
 public class EventProducer {
     private final KafkaTemplate<String, Event> kafkaTemplate;
 
-    public void sendEvent(Event event, String key) {
-        ProducerRecord<String, Event> producerRecord = new ProducerRecord<>("event-topic", key, event);
+    public void sendEvent(
+            Event event,
+            String key
+    ) {
+        ProducerRecord<String, Event> producerRecord = new ProducerRecord<>("event-topic",
+                                    key,
+                                    event);
         kafkaTemplate.send(producerRecord);
         System.out.println("Sent event: " + event + "with key: " + key);
     }
