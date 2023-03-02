@@ -2,7 +2,7 @@ package kz.dar.tech.eventservice.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import kz.dar.tech.eventservice.category.Category;
 import lombok.*;
 
@@ -13,6 +13,7 @@ import lombok.*;
 @Entity
 @Builder
 @Table(name = "events")
+@ToString
 public class Event {
 
     @Id

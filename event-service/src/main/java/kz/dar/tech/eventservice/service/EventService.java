@@ -18,6 +18,7 @@ import java.util.List;
 public class EventService {
 
     private final EventRepository eventRepository;
+    private final EventProducer eventProducer;
 
 
     public List<Event> getAllEvents() {
@@ -63,11 +64,14 @@ public class EventService {
                 .time(eventDTO.getTime())
                 .build();
 
-        return eventRepository.save(
+
+        eventRepository.save(
                 event
         );
+        eventProducer.sendEvent(event, "event-key");
+        return event;
     }
-    public void deleteEvent(
+    public void removeEvent(
             Long id
     ) {
         eventRepository.deleteById(id);

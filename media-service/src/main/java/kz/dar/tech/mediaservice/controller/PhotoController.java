@@ -32,9 +32,16 @@ public class PhotoController {
 
     @PutMapping("/{id}")
     public void updatePhoto(
-            @PathVariable Long id,
+            @PathVariable(name = "id") Long id,
             @RequestParam("file") MultipartFile file
     ) throws IOException {
         photoService.updatePhoto(id, file);
+    }
+
+    @DeleteMapping("/{id}")
+    public void removePhoto(
+            @PathVariable Long id
+    ) {
+        photoService.removePhoto(id);
     }
 }
